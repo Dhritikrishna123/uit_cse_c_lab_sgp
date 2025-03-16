@@ -95,6 +95,32 @@ int main(void) {
 - Proper error messages
 - Clear input buffer handling
 
+### Sample Outputs
+
+**Output 1 (Successful Conversion)**:
+```
+Temperature Conversion:
+1. Celsius to Fahrenheit
+2. Fahrenheit to Celsius
+Enter choice (1 or 2): 1
+
+Enter temperature in Celsius: 37.5
+
+Result: 37.50°C = 99.50°F
+```
+
+**Output 2 (Error Case)**:
+```
+Temperature Conversion:
+1. Celsius to Fahrenheit
+2. Fahrenheit to Celsius
+Enter choice (1 or 2): 1
+
+Enter temperature in Celsius: -300
+
+Error: Temperature cannot be below absolute zero (-273.15°C)!
+```
+
 ---
 
 ## 2. Polynomial Evaluation
@@ -178,6 +204,29 @@ int main(void) {
 - Dynamic coefficient input based on degree
 - Clear error messages
 
+### Sample Outputs
+
+**Output 1 (Successful Evaluation)**:
+```
+Enter the degree of the polynomial (0-10): 2
+
+Enter the coefficients (from highest degree to constant term):
+Coefficient of x^2: 1
+Coefficient of x^1: -5
+Coefficient of x^0: 6
+
+Enter the value of x: 2
+
+Polynomial evaluation at x = 2.00: 4.0000
+```
+
+**Output 2 (Error Case)**:
+```
+Enter the degree of the polynomial (0-10): 11
+
+Error: Degree cannot exceed 10.
+```
+
 ---
 
 ## 3. ASCII Values Display
@@ -259,6 +308,31 @@ int main(void) {
 - Array bounds checking
 - Special character handling
 - Clean visual presentation
+
+### Sample Outputs
+
+**Output 1 (Successful Display)**:
+```
+=============================================
+      ASCII VALUES OF DIFFERENT CHARACTERS   
+=============================================
+
+ ASCII values for **Uppercase Alphabets**:
+---------------------------------------------
+A:  65  B:  66  C:  67  D:  68  E:  69  F:  70  
+G:  71  H:  72  I:  73  J:  74  K:  75  L:  76  
+[Output truncated for brevity]
+
+```
+
+**Output 2 (Special Characters)**:
+```
+ ASCII values for **Special Characters**:
+---------------------------------------------
+(New Line) :  10  (Backspace):   8  (Space)   :  32  
+;          :  59  ,          :  44  .         :  46  
+[Output truncated for brevity]
+```
 
 ---
 
@@ -352,6 +426,35 @@ int main(void) {
 - Clear menu interface
 - Proper error handling
 
+### Sample Outputs
+
+**Output 1 (Successful Swap)**:
+```
+Enter two numbers: 10 20
+
+Choose the swapping method:
+1. Using Arithmetic Operators
+2. Using a Third Variable
+3. Using Bitwise XOR
+Enter your choice (1-3): 1
+
+Swapped using Arithmetic Operators:
+After swapping: a = 20, b = 10
+```
+
+**Output 2 (Error Case)**:
+```
+Enter two numbers: 2147483647 100
+
+Choose the swapping method:
+1. Using Arithmetic Operators
+2. Using a Third Variable
+3. Using Bitwise XOR
+Enter your choice (1-3): 1
+
+Error: Numbers too large for arithmetic method. Please use another method.
+```
+
 ---
 
 ## 5. Time Unit Conversion
@@ -415,6 +518,23 @@ int main(void) {
 - Preserves original input
 - Formatted output display
 
+### Sample Outputs
+
+**Output 1 (Successful Conversion)**:
+```
+Enter the number of seconds: 100000
+
+Converting 100000 seconds:
+= 1 day(s), 3 hour(s), 46 minute(s), 40 second(s)
+```
+
+**Output 2 (Error Case)**:
+```
+Enter the number of seconds: -50
+
+Error: Number of seconds cannot be negative.
+```
+
 ---
 
 ## 6. Decimal Number Floor and Ceiling
@@ -471,6 +591,23 @@ int main() {
 - Handles both positive and negative numbers
 - Proper rounding for floor and ceiling
 - Clear error messages
+
+### Sample Outputs
+
+**Output 1 (Successful Case)**:
+```
+Enter a decimal number: 3.7
+
+Smallest integer not less than 3.70 is: 4
+Largest integer not greater than 3.70 is: 3
+```
+
+**Output 2 (Error Case)**:
+```
+Enter a decimal number: 2147483648.5
+
+Error: Number out of integer range! Please enter a number between -2147483648 and 2147483647
+```
 
 ---
 
@@ -576,6 +713,27 @@ int main() {
 - Fair comparison of three digits on each side
 - Proper rounding and error handling
 
+### Sample Outputs
+
+**Output 1 (Successful Analysis)**:
+```
+Enter a floating point number (up to 3 decimal places, <= 999.999): 123.456
+
+Left-most digit: 1
+Right-most digit: 6
+
+Left three digits: 123
+Right three digits: 456
+Right side three digits are bigger by 333
+```
+
+**Output 2 (Error Case)**:
+```
+Enter a floating point number (up to 3 decimal places, <= 999.999): 1000.0
+
+Error: Number must be between 0 and 999.999!
+```
+
 ---
 
 ## 8. Five Digit Number Operations
@@ -632,6 +790,23 @@ int main() {
 - Calculates both sum and product
 - Preserves original input
 - Clear error messages
+
+### Sample Outputs
+
+**Output 1 (Successful Calculation)**:
+```
+Enter a five digit number: 12345
+
+Sum of digits of 12345 is: 15
+Product of digits of 12345 is: 120
+```
+
+**Output 2 (Error Case)**:
+```
+Enter a five digit number: 1234
+
+Error: Please enter exactly five digits (10000 to 99999)!
+```
 
 ---
 
@@ -716,6 +891,26 @@ int main() {
 - Overflow protection
 - Clear output format
 
+### Sample Outputs
+
+**Output 1 (Successful Check)**:
+```
+Enter an integer: 17
+
+17 is a prime number
+17 is odd
+17 is positive
+```
+
+**Output 2 (Multiple Properties)**:
+```
+Enter an integer: 20
+
+20 is not a prime number
+20 is even
+20 is positive
+```
+
 ---
 
 ## 10. Bitwise Operations Demo
@@ -795,6 +990,30 @@ int main() {
 - Range checking
 - Safe handling of negative numbers
 - Clear output formatting
+
+### Sample Outputs
+
+**Output 1 (Successful Operations)**:
+```
+Enter two integers to perform bitwise operations: 12 7
+
+Bitwise Operations Results:
+----------------------------
+Bitwise AND (&):
+12 & 7 = 4
+
+Bitwise OR (|):
+12 | 7 = 15
+
+[Output continues with other operations]
+```
+
+**Output 2 (Error Case)**:
+```
+Enter two integers to perform bitwise operations: 2147483648 1
+
+Error: Numbers out of range! Please enter numbers between -2147483648 and 2147483647
+```
 
 ---
 

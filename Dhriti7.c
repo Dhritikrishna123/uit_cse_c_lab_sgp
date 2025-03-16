@@ -2,7 +2,7 @@
 Program to read a floating point number of up to three decimal places and less than
 or equal to 999.999 and display the right-most and left-most digits of the inputted
 number. Also check which out of the left handside and right handside three digits
-is bigger and by how much (Mathematical Method)
+is bigger and by how much 
 */
 #include <stdio.h>
 
