@@ -22,8 +22,7 @@ Program to convert temperatures between Celsius and Fahrenheit with input valida
 ### Code
 ```c
 /*
-Program to Convert Temperature between Celsius and Fahrenheit with
-input validation and error handling.
+Program to Convert Temperature between Celsius and Fahrenheit
 */
 
 #include <stdio.h>
@@ -130,9 +129,8 @@ Program to evaluate a polynomial of degree n at a given value x. Includes input 
 
 ### Code
 ```c
-/* 
-C Program to Evaluate the Sum of a Polynomial with input validation
-and overflow checking.
+/*
+Program to Evaluate the Sum of a Polynomial
 */
 
 #include <stdio.h>
@@ -237,8 +235,7 @@ Program to display ASCII values for different types of characters with proper fo
 ### Code
 ```c
 /*
-C Program to Print ASCII Codes for Different Characters with
-proper formatting and array bounds checking.
+Program to Print ASCII Codes for Different Characters
 */
 
 #include <stdio.h>
@@ -344,8 +341,7 @@ Program to demonstrate three different methods of swapping variables with input 
 ### Code
 ```c
 /*
-C Program to Swap Two Variables Using Different Methods with
-input validation and overflow checking.
+Program to Swap Two Variables Using Different Methods
 */
 
 #include <stdio.h>
@@ -465,8 +461,7 @@ Program to convert seconds into days, hours, minutes, and seconds with input val
 ### Code
 ```c
 /*
-C program to convert a given number of seconds into days, hours,
-minutes, and seconds with input validation.
+Program to Convert Seconds into Days, Hours, Minutes and Seconds
 */
 
 #include <stdio.h>
@@ -545,8 +540,7 @@ Program to find the smallest integer not less than (ceiling) and the largest int
 ### Code
 ```c
 /*
-Program to input a decimal number and display the smallest integer not less than 
-the number and the largest integer not greater than the number
+Program to Find Floor and Ceiling of a Decimal Number
 */
 #include <stdio.h>
 #include <limits.h>
@@ -619,10 +613,7 @@ Program to analyze a floating point number (≤ 999.999) by finding its leftmost
 ### Code
 ```c
 /*
-Program to read a floating point number of up to three decimal places and less than
-or equal to 999.999 and display the right-most and left-most digits of the inputted
-number. Also check which out of the left handside and right handside three digits
-is bigger and by how much (Mathematical Method)
+Program to Analyze a Floating Point Number (≤ 999.999)
 */
 #include <stdio.h>
 
@@ -744,8 +735,7 @@ Program to calculate the sum and product of digits of a five-digit number.
 ### Code
 ```c
 /*
-Program to input a five digit number and print its sum of digits as well as
-product of digits
+Program to Calculate Sum and Product of a Five-Digit Number
 */
 #include <stdio.h>
 
@@ -818,8 +808,7 @@ Program to check if a number is prime, even/odd, and positive/negative/zero.
 ### Code
 ```c
 /*
-Program to read an integer and check whether it is prime, even/odd and
-positive/negative/zero
+Program to Check Prime, Even/Odd and Sign of a Number
 */
 #include <stdio.h>
 #include <stdbool.h>
@@ -921,7 +910,7 @@ Program to demonstrate all bitwise operators in C.
 ### Code
 ```c
 /*
-Program to demonstrate all the operations of the Bitwise operators
+Program to Demonstrate Bitwise Operations
 */
 #include <stdio.h>
 #include <limits.h>
