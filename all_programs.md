@@ -27,7 +27,6 @@ Program to Convert Temperature between Celsius and Fahrenheit
 
 #include <stdio.h>
 
-// Function to clear input buffer
 void clearInputBuffer() {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
@@ -37,51 +36,62 @@ int main(void) {
     float temp, convertedTemp;
     int choice;
     char check;
+    int valid_input = 0;
 
-    printf("\nTemperature Conversion:\n");
-    printf("1. Celsius to Fahrenheit\n");
-    printf("2. Fahrenheit to Celsius\n");
-    printf("Enter choice (1 or 2): ");
-    
-    if (scanf("%d%c", &choice, &check) != 2 || check != '\n') {
-        printf("Error: Invalid input! Please enter a number (1 or 2).\n");
-        return 1;
-    }
+    do {
+        printf("\nTemperature Conversion:\n");
+        printf("1. Celsius to Fahrenheit\n");
+        printf("2. Fahrenheit to Celsius\n");
+        printf("Enter choice (1 or 2): ");
+        
+        if (scanf("%d%c", &choice, &check) != 2 || check != '\n') {
+            printf("Error: Invalid input! Please enter a number (1 or 2).\n");
+            clearInputBuffer();
+            continue;
+        }
 
-    if (choice != 1 && choice != 2) {
-        printf("Error: Invalid choice! Please enter either 1 or 2.\n");
-        return 1;
-    }
+        if (choice != 1 && choice != 2) {
+            printf("Error: Invalid choice! Please enter either 1 or 2.\n");
+            continue;
+        }
+        valid_input = 1;
+    } while (!valid_input);
 
-    if (choice == 1) {
-        printf("\nEnter temperature in Celsius: ");
-        if (scanf("%f%c", &temp, &check) != 2 || check != '\n') {
-            printf("Error: Invalid input! Please enter a valid number.\n");
-            return 1;
+    valid_input = 0;
+    do {
+        if (choice == 1) {
+            printf("\nEnter temperature in Celsius: ");
+            if (scanf("%f%c", &temp, &check) != 2 || check != '\n') {
+                printf("Error: Invalid input! Please enter a valid number.\n");
+                clearInputBuffer();
+                continue;
+            }
+            
+            if (temp < -273.15) {
+                printf("Error: Temperature cannot be below absolute zero (-273.15°C)!\n");
+                continue;
+            }
+            
+            convertedTemp = (temp * 9.0 / 5.0) + 32.0;
+            printf("\nResult: %.2f°C = %.2f°F\n", temp, convertedTemp);
+        } else {
+            printf("\nEnter temperature in Fahrenheit: ");
+            if (scanf("%f%c", &temp, &check) != 2 || check != '\n') {
+                printf("Error: Invalid input! Please enter a valid number.\n");
+                clearInputBuffer();
+                continue;
+            }
+            
+            if (temp < -459.67) {
+                printf("Error: Temperature cannot be below absolute zero (-459.67°F)!\n");
+                continue;
+            }
+            
+            convertedTemp = (temp - 32.0) * 5.0 / 9.0;
+            printf("\nResult: %.2f°F = %.2f°C\n", temp, convertedTemp);
         }
-        
-        if (temp < -273.15) {
-            printf("Error: Temperature cannot be below absolute zero (-273.15°C)!\n");
-            return 1;
-        }
-        
-        convertedTemp = (temp * 9.0 / 5.0) + 32.0;
-        printf("\nResult: %.2f°C = %.2f°F\n", temp, convertedTemp);
-    } else {
-        printf("\nEnter temperature in Fahrenheit: ");
-        if (scanf("%f%c", &temp, &check) != 2 || check != '\n') {
-            printf("Error: Invalid input! Please enter a valid number.\n");
-            return 1;
-        }
-        
-        if (temp < -459.67) {
-            printf("Error: Temperature cannot be below absolute zero (-459.67°F)!\n");
-            return 1;
-        }
-        
-        convertedTemp = (temp - 32.0) * 5.0 / 9.0;
-        printf("\nResult: %.2f°F = %.2f°C\n", temp, convertedTemp);
-    }
+        valid_input = 1;
+    } while (!valid_input);
 
     return 0;
 }
@@ -138,7 +148,6 @@ Program to Evaluate the Sum of a Polynomial
 
 #define MAX_DEGREE 10  // Maximum degree of polynomial allowed
 
-// Function to clear input buffer
 void clearInputBuffer() {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
@@ -149,37 +158,52 @@ int main(void) {
     double x, sum = 0.0;
     double coefficients[MAX_DEGREE + 1];
     char check;
+    int valid_input = 0;
 
-    printf("Enter the degree of the polynomial (0-%d): ", MAX_DEGREE);
-    if (scanf("%d%c", &n, &check) != 2 || check != '\n') {
-        printf("Error: Invalid input! Please enter a valid integer.\n");
-        return 1;
-    }
+    do {
+        printf("Enter the degree of the polynomial (0-%d): ", MAX_DEGREE);
+        if (scanf("%d%c", &n, &check) != 2 || check != '\n') {
+            printf("Error: Invalid input! Please enter a valid integer.\n");
+            clearInputBuffer();
+            continue;
+        }
 
-    if (n < 0) {
-        printf("Error: Degree cannot be negative.\n");
-        return 1;
-    }
+        if (n < 0) {
+            printf("Error: Degree cannot be negative.\n");
+            continue;
+        }
 
-    if (n > MAX_DEGREE) {
-        printf("Error: Degree cannot exceed %d.\n", MAX_DEGREE);
-        return 1;
-    }
+        if (n > MAX_DEGREE) {
+            printf("Error: Degree cannot exceed %d.\n", MAX_DEGREE);
+            continue;
+        }
+        valid_input = 1;
+    } while (!valid_input);
 
     printf("\nEnter the coefficients (from highest degree to constant term):\n");
     for (int i = 0; i <= n; i++) {
-        printf("Coefficient of x^%d: ", n - i);
-        if (scanf("%lf%c", &coefficients[i], &check) != 2 || check != '\n') {
-            printf("Error: Invalid input! Please enter a valid number.\n");
-            return 1;
-        }
+        valid_input = 0;
+        do {
+            printf("Coefficient of x^%d: ", n - i);
+            if (scanf("%lf%c", &coefficients[i], &check) != 2 || check != '\n') {
+                printf("Error: Invalid input! Please enter a valid number.\n");
+                clearInputBuffer();
+                continue;
+            }
+            valid_input = 1;
+        } while (!valid_input);
     }
 
-    printf("\nEnter the value of x: ");
-    if (scanf("%lf%c", &x, &check) != 2 || check != '\n') {
-        printf("Error: Invalid input! Please enter a valid number.\n");
-        return 1;
-    }
+    valid_input = 0;
+    do {
+        printf("\nEnter the value of x: ");
+        if (scanf("%lf%c", &x, &check) != 2 || check != '\n') {
+            printf("Error: Invalid input! Please enter a valid number.\n");
+            clearInputBuffer();
+            continue;
+        }
+        valid_input = 1;
+    } while (!valid_input);
 
     for (int i = 0; i <= n; i++) {
         sum += coefficients[i] * pow(x, n - i);
@@ -243,12 +267,18 @@ Program to Print ASCII Codes for Different Characters
 int main(void) {
     char ch;
 
-    printf("=============================================\n");
-    printf("      ASCII VALUES OF DIFFERENT CHARACTERS   \n");
-    printf("=============================================\n\n");
+    printf("=============================================
+");
+    printf("      ASCII VALUES OF DIFFERENT CHARACTERS   
+");
+    printf("=============================================
 
-    printf(" ASCII values for **Uppercase Alphabets**:\n");
-    printf("---------------------------------------------\n");
+");
+
+    printf(" ASCII values for **Uppercase Alphabets**:
+");
+    printf("---------------------------------------------
+");
     for (ch = 'A'; ch <= 'Z'; ch++) {
         printf("%c: %3d  ", ch, ch);
         if ((ch - 'A' + 1) % 6 == 0) printf("\n");
@@ -256,8 +286,10 @@ int main(void) {
     if ((ch - 'A') % 6 != 0) printf("\n");
     printf("\n");
 
-    printf(" ASCII values for **Lowercase Alphabets**:\n");
-    printf("---------------------------------------------\n");
+    printf(" ASCII values for **Lowercase Alphabets**:
+");
+    printf("---------------------------------------------
+");
     for (ch = 'a'; ch <= 'z'; ch++) {
         printf("%c: %3d  ", ch, ch);
         if ((ch - 'a' + 1) % 6 == 0) printf("\n");
@@ -265,15 +297,19 @@ int main(void) {
     if ((ch - 'a') % 6 != 0) printf("\n");
     printf("\n");
 
-    printf(" ASCII values for **Numbers (0-9)**:\n");
-    printf("---------------------------------------------\n");
+    printf(" ASCII values for **Numbers (0-9)**:
+");
+    printf("---------------------------------------------
+");
     for (ch = '0'; ch <= '9'; ch++) {
         printf("%c: %3d  ", ch, ch);
     }
     printf("\n\n");
 
-    printf(" ASCII values for **Special Characters**:\n");
-    printf("---------------------------------------------\n");
+    printf(" ASCII values for **Special Characters**:
+");
+    printf("---------------------------------------------
+");
     char specialChars[] = {'\n', '\b', ' ', ';', ',', '.', '-', '+', '/', '*', '%', '&', '>', '<', '='};
     char* specialNames[] = {"(New Line)", "(Backspace)", "(Space)", ";", ",", ".", "-", "+", "/", "*", "%", "&", ">", "<", "="};
 
@@ -291,9 +327,12 @@ int main(void) {
     }
     if (size % 3 != 0) printf("\n");
 
-    printf("\n=============================================\n");
-    printf("            PROGRAM EXECUTION ENDED          \n");
-    printf("=============================================\n");
+    printf("\n=============================================
+");
+    printf("            PROGRAM EXECUTION ENDED          
+");
+    printf("=============================================
+");
 
     return 0;
 }
@@ -347,7 +386,6 @@ Program to Swap Two Variables Using Different Methods
 #include <stdio.h>
 #include <limits.h>
 
-// Function to clear input buffer
 void clearInputBuffer() {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
@@ -356,30 +394,44 @@ void clearInputBuffer() {
 int main(void) {
     int a, b, choice;
     char check;
+    int valid_input = 0;
 
-    printf("Enter two numbers: ");
-    if (scanf("%d %d%c", &a, &b, &check) != 3 || check != '\n') {
-        printf("Error: Invalid input! Please enter two valid integers.\n");
-        return 1;
-    }
-
-    printf("\nChoose the swapping method:\n");
-    printf("1. Using Arithmetic Operators\n");
-    printf("2. Using a Third Variable\n");
-    printf("3. Using Bitwise XOR\n");
-    printf("Enter your choice (1-3): ");
-    
-    if (scanf("%d%c", &choice, &check) != 2 || check != '\n') {
-        printf("Error: Invalid input! Please enter a number between 1 and 3.\n");
-        return 1;
-    }
-
-    if (choice == 1) {
-        if ((a > 0 && b > INT_MAX - a) || (a < 0 && b < INT_MIN - a)) {
-            printf("Error: Numbers too large for arithmetic method. Please use another method.\n");
-            return 1;
+    do {
+        printf("Enter two numbers: ");
+        if (scanf("%d %d%c", &a, &b, &check) != 3 || check != '\n') {
+            printf("Error: Invalid input! Please enter two valid integers.\n");
+            clearInputBuffer();
+            continue;
         }
-    }
+        valid_input = 1;
+    } while (!valid_input);
+
+    do {
+        printf("\nChoose the swapping method:\n");
+        printf("1. Using Arithmetic Operators\n");
+        printf("2. Using a Third Variable\n");
+        printf("3. Using Bitwise XOR\n");
+        printf("Enter your choice (1-3): ");
+        
+        if (scanf("%d%c", &choice, &check) != 2 || check != '\n') {
+            printf("Error: Invalid input! Please enter a number between 1 and 3.\n");
+            clearInputBuffer();
+            continue;
+        }
+
+        if (choice < 1 || choice > 3) {
+            printf("Error: Invalid choice! Please enter a number between 1 and 3.\n");
+            continue;
+        }
+
+        if (choice == 1) {
+            if ((a > 0 && b > INT_MAX - a) || (a < 0 && b < INT_MIN - a)) {
+                printf("Error: Numbers too large for arithmetic method. Please use another method.\n");
+                continue;
+            }
+        }
+        valid_input = 1;
+    } while (!valid_input);
 
     switch (choice) {
         case 1:
@@ -404,10 +456,6 @@ int main(void) {
             a = a ^ b;
             printf("\nSwapped using Bitwise XOR:\n");
             break;
-
-        default:
-            printf("Error: Invalid choice! Please enter a number between 1 and 3.\n");
-            return 1;
     }
 
     printf("After swapping: a = %d, b = %d\n", a, b);
@@ -466,7 +514,6 @@ Program to Convert Seconds into Days, Hours, Minutes and Seconds
 
 #include <stdio.h>
 
-// Function to clear input buffer
 void clearInputBuffer() {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
@@ -475,17 +522,22 @@ void clearInputBuffer() {
 int main(void) {
     int seconds, days, hours, minutes;
     char check;
+    int valid_input = 0;
 
-    printf("Enter the number of seconds: ");
-    if (scanf("%d%c", &seconds, &check) != 2 || check != '\n') {
-        printf("Error: Invalid input! Please enter a valid integer.\n");
-        return 1;
-    }
+    do {
+        printf("Enter the number of seconds: ");
+        if (scanf("%d%c", &seconds, &check) != 2 || check != '\n') {
+            printf("Error: Invalid input! Please enter a valid integer.\n");
+            clearInputBuffer();
+            continue;
+        }
 
-    if (seconds < 0) {
-        printf("Error: Number of seconds cannot be negative.\n");
-        return 1;
-    }
+        if (seconds < 0) {
+            printf("Error: Number of seconds cannot be negative.\n");
+            continue;
+        }
+        valid_input = 1;
+    } while (!valid_input);
 
     int originalSeconds = seconds;
 
@@ -545,22 +597,30 @@ Program to Find Floor and Ceiling of a Decimal Number
 #include <stdio.h>
 #include <limits.h>
 
+void clearInputBuffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
+
 int main() {
     double num;
     char check;
+    int valid_input = 0;
     
-    printf("Enter a decimal number: ");
-    if(scanf("%lf%c", &num, &check) != 2 || check != '\n') {
-        printf("Error: Invalid input! Please enter a valid decimal number.\n");
-        return 1;
-    }
-    
-    // Check for overflow
-    if(num > INT_MAX || num < INT_MIN) {
-        printf("Error: Number out of integer range! Please enter a number between %d and %d\n", 
-               INT_MIN, INT_MAX);
-        return 1;
-    }
+    do {
+        printf("Enter a decimal number: ");
+        if(scanf("%lf%c", &num, &check) != 2 || check != '\n') {
+            printf("Error: Invalid input! Please enter a valid decimal number.\n");
+            clearInputBuffer();
+            continue;
+        }
+        
+        if(num > INT_MAX || num < INT_MIN) {
+            printf("Error: Number out of integer range!\n");
+            continue;
+        }
+        valid_input = 1;
+    } while (!valid_input);
     
     int smallest = (int)num;
     if (num > 0 && num != (int)num) {
@@ -617,6 +677,11 @@ Program to Analyze a Floating Point Number (≤ 999.999)
 */
 #include <stdio.h>
 
+void clearInputBuffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
+
 // Function to count decimal places using mathematical operations
 int countDecimalPlaces(double num) {
     int count = 0;
@@ -647,24 +712,29 @@ int getRightmostDigit(int num) {
 int main() {
     double num;
     char check;
+    int valid_input = 0;
     
-    printf("Enter a floating point number (up to 3 decimal places, <= 999.999): ");
-    if(scanf("%lf%c", &num, &check) != 2 || check != '\n') {
-        printf("Error: Invalid input! Please enter a valid number.\n");
-        return 1;
-    }
-    
-    if(num < 0 || num > 999.999) {
-        printf("Error: Number must be between 0 and 999.999!\n");
-        return 1;
-    }
-    
-    // Check decimal places
-    int decimalPlaces = countDecimalPlaces(num);
-    if(decimalPlaces > 3) {
-        printf("Error: Number must have at most 3 decimal places!\n");
-        return 1;
-    }
+    do {
+        printf("Enter a floating point number (up to 3 decimal places, <= 999.999): ");
+        if(scanf("%lf%c", &num, &check) != 2 || check != '\n') {
+            printf("Error: Invalid input! Please enter a valid number.\n");
+            clearInputBuffer();
+            continue;
+        }
+        
+        if(num < 0 || num > 999.999) {
+            printf("Error: Number must be between 0 and 999.999!\n");
+            continue;
+        }
+        
+        // Check decimal places
+        int decimalPlaces = countDecimalPlaces(num);
+        if(decimalPlaces > 3) {
+            printf("Error: Number must have at most 3 decimal places!\n");
+            continue;
+        }
+        valid_input = 1;
+    } while (!valid_input);
     
     // Round to exactly 3 decimal places for consistency
     num = (double)((int)(num * 1000 + 0.5)) / 1000.0;
@@ -692,6 +762,7 @@ int main() {
     } else {
         printf("\nBoth sides are equal");
     }
+    printf("\n");
     
     return 0;
 }
@@ -739,22 +810,32 @@ Program to Calculate Sum and Product of a Five-Digit Number
 */
 #include <stdio.h>
 
+void clearInputBuffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
+
 int main() {
     long num, temp;  // Using long to check range
     int sum = 0, product = 1;
     char check;
+    int valid_input = 0;
     
-    printf("Enter a five digit number: ");
-    if(scanf("%ld%c", &num, &check) != 2 || check != '\n') {
-        printf("Error: Invalid input! Please enter a valid number.\n");
-        return 1;
-    }
-    
-    // Validate five digits and positive number
-    if(num < 10000 || num > 99999) {
-        printf("Error: Please enter exactly five digits (10000 to 99999)!\n");
-        return 1;
-    }
+    do {
+        printf("Enter a five digit number: ");
+        if(scanf("%ld%c", &num, &check) != 2 || check != '\n') {
+            printf("Error: Invalid input! Please enter a valid number.\n");
+            clearInputBuffer();
+            continue;
+        }
+        
+        // Validate five digits and positive number
+        if(num < 10000 || num > 99999) {
+            printf("Error: Please enter exactly five digits!\n");
+            continue;
+        }
+        valid_input = 1;
+    } while (!valid_input);
     
     // Store original number
     temp = num;
@@ -767,8 +848,9 @@ int main() {
         temp /= 10;
     }
     
-    printf("Sum of digits of %ld is: %d\n", num, sum);
-    printf("Product of digits of %ld is: %d\n", num, product);
+    printf("\nFor the number %ld:\n", num);
+    printf("Sum of digits: %d\n", sum);
+    printf("Product of digits: %d\n", product);
     
     return 0;
 }
@@ -814,6 +896,11 @@ Program to Check Prime, Even/Odd and Sign of a Number
 #include <stdbool.h>
 #include <limits.h>
 
+void clearInputBuffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
+
 bool isPrime(int n) {
     if (n <= 1) return false;
     if (n <= 3) return true;
@@ -830,43 +917,44 @@ bool isPrime(int n) {
 int main() {
     long long num;  // Using long long for maximum range
     char check;
+    int valid_input = 0;
     
-    printf("Enter an integer: ");
-    if(scanf("%lld%c", &num, &check) != 2 || check != '\n') {
-        printf("Error: Invalid input! Please enter a valid integer.\n");
-        return 1;
-    }
-    
-    // Check for integer overflow
-    if(num > INT_MAX || num < INT_MIN) {
-        printf("Error: Number out of range! Please enter a number between %d and %d\n", 
-               INT_MIN, INT_MAX);
-        return 1;
-    }
+    do {
+        printf("Enter an integer: ");
+        if(scanf("%lld%c", &num, &check) != 2 || check != '\n') {
+            printf("Error: Invalid input! Please enter a valid integer.\n");
+            clearInputBuffer();
+            continue;
+        }
+        
+        // Check for integer overflow
+        if(num > INT_MAX || num < INT_MIN) {
+            printf("Error: Number out of range! Please enter a number between %d and %d\n", 
+                   INT_MIN, INT_MAX);
+            continue;
+        }
+        valid_input = 1;
+    } while (!valid_input);
     
     int n = (int)num;  // Safe to convert now
     
+    printf("\nProperties of %d:\n", n);
+    printf("----------------\n");
+    
     // Check if prime
-    if (isPrime(n)) {
-        printf("%d is a prime number\n", n);
-    } else {
-        printf("%d is not a prime number\n", n);
-    }
+    printf("Prime Status: %s\n", isPrime(n) ? "Prime" : "Not Prime");
     
     // Check if even/odd
-    if (n % 2 == 0) {
-        printf("%d is even\n", n);
-    } else {
-        printf("%d is odd\n", n);
-    }
+    printf("Parity: %s\n", (n % 2 == 0) ? "Even" : "Odd");
     
     // Check if positive/negative/zero
+    printf("Sign: ");
     if (n > 0) {
-        printf("%d is positive\n", n);
+        printf("Positive\n");
     } else if (n < 0) {
-        printf("%d is negative\n", n);
+        printf("Negative\n");
     } else {
-        printf("The number is zero\n");
+        printf("Zero\n");
     }
     
     return 0;
@@ -915,22 +1003,32 @@ Program to Demonstrate Bitwise Operations
 #include <stdio.h>
 #include <limits.h>
 
+void clearInputBuffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
+
 int main() {
     long long a, b;  // Using long long for range checking
     char check;
+    int valid_input = 0;
     
-    printf("Enter two integers to perform bitwise operations: ");
-    if(scanf("%lld %lld%c", &a, &b, &check) != 3 || check != '\n') {
-        printf("Error: Invalid input! Please enter two valid integers.\n");
-        return 1;
-    }
-    
-    // Check for integer overflow
-    if(a > INT_MAX || a < INT_MIN || b > INT_MAX || b < INT_MIN) {
-        printf("Error: Numbers out of range! Please enter numbers between %d and %d\n", 
-               INT_MIN, INT_MAX);
-        return 1;
-    }
+    do {
+        printf("Enter two integers to perform bitwise operations: ");
+        if(scanf("%lld %lld%c", &a, &b, &check) != 3 || check != '\n') {
+            printf("Error: Invalid input! Please enter two valid integers.\n");
+            clearInputBuffer();
+            continue;
+        }
+        
+        // Check for integer overflow
+        if(a > INT_MAX || a < INT_MIN || b > INT_MAX || b < INT_MIN) {
+            printf("Error: Numbers out of range! Please enter numbers between %d and %d\n", 
+                   INT_MIN, INT_MAX);
+            continue;
+        }
+        valid_input = 1;
+    } while (!valid_input);
     
     int num1 = (int)a;  // Safe to convert now
     int num2 = (int)b;
@@ -1028,4 +1126,6 @@ Error: Numbers out of range! Please enter numbers between -2147483648 and 214748
 - Error messages are clear and descriptive
 - Programs use consistent error handling
 - Code is well-commented and formatted
-- Each program returns 0 for success, 1 for errors 
+- Each program returns 0 for success, 1 for errors
+
+</rewritten_file> 

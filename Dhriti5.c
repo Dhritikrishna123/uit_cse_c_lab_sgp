@@ -15,6 +15,7 @@ int main(void) {
     printf("Enter the number of seconds: ");
     if (scanf("%d%c", &seconds, &check) != 2 || check != '\n') {
         printf("Error: Invalid input! Please enter a valid integer.\n");
+        clearInputBuffer();
         return 1;
     }
 

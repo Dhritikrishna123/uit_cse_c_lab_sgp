@@ -1,25 +1,34 @@
 /*
-Program to input a five digit number and print its sum of digits as well as
-product of digits
+Program to Calculate Sum and Product of a Five-Digit Number
 */
 #include <stdio.h>
+
+void clearInputBuffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
 
 int main() {
     long num, temp;  // Using long to check range
     int sum = 0, product = 1;
     char check;
+    int valid_input = 0;
     
-    printf("Enter a five digit number: ");
-    if(scanf("%ld%c", &num, &check) != 2 || check != '\n') {
-        printf("Error: Invalid input! Please enter a valid number.\n");
-        return 1;
-    }
-    
-    // Validate five digits and positive number
-    if(num < 10000 || num > 99999) {
-        printf("Error: Please enter exactly five digits (10000 to 99999)!\n");
-        return 1;
-    }
+    do {
+        printf("Enter a five digit number: ");
+        if(scanf("%ld%c", &num, &check) != 2 || check != '\n') {
+            printf("Error: Invalid input! Please enter a valid number.\n");
+            clearInputBuffer();
+            continue;
+        }
+        
+        // Validate five digits and positive number
+        if(num < 10000 || num > 99999) {
+            printf("Error: Please enter exactly five digits (10000 to 99999)!\n");
+            continue;
+        }
+        valid_input = 1;
+    } while (!valid_input);
     
     // Store original number
     temp = num;
@@ -32,8 +41,9 @@ int main() {
         temp /= 10;
     }
     
-    printf("Sum of digits of %ld is: %d\n", num, sum);
-    printf("Product of digits of %ld is: %d\n", num, product);
+    printf("\nFor the number %ld:\n", num);
+    printf("Sum of digits: %d\n", sum);
+    printf("Product of digits: %d\n", product);
     
     return 0;
 } 

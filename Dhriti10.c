@@ -1,25 +1,35 @@
 /*
-Program to demonstrate all the operations of the Bitwise operators
+Program to Demonstrate Bitwise Operations
 */
 #include <stdio.h>
 #include <limits.h>
 
+void clearInputBuffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
+
 int main() {
     long long a, b;  // Using long long for range checking
     char check;
+    int valid_input = 0;
     
-    printf("Enter two integers to perform bitwise operations: ");
-    if(scanf("%lld %lld%c", &a, &b, &check) != 3 || check != '\n') {
-        printf("Error: Invalid input! Please enter two valid integers.\n");
-        return 1;
-    }
-    
-    // Check for integer overflow
-    if(a > INT_MAX || a < INT_MIN || b > INT_MAX || b < INT_MIN) {
-        printf("Error: Numbers out of range! Please enter numbers between %d and %d\n", 
-               INT_MIN, INT_MAX);
-        return 1;
-    }
+    do {
+        printf("Enter two integers to perform bitwise operations: ");
+        if(scanf("%lld %lld%c", &a, &b, &check) != 3 || check != '\n') {
+            printf("Error: Invalid input! Please enter two valid integers.\n");
+            clearInputBuffer();
+            continue;
+        }
+        
+        // Check for integer overflow
+        if(a > INT_MAX || a < INT_MIN || b > INT_MAX || b < INT_MIN) {
+            printf("Error: Numbers out of range! Please enter numbers between %d and %d\n", 
+                   INT_MIN, INT_MAX);
+            continue;
+        }
+        valid_input = 1;
+    } while (!valid_input);
     
     int num1 = (int)a;  // Safe to convert now
     int num2 = (int)b;

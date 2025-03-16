@@ -1,12 +1,9 @@
 /*
-Program to read a floating point number of up to three decimal places and less than
-or equal to 999.999 and display the right-most and left-most digits of the inputted
-number. Also check which out of the left handside and right handside three digits
-is bigger and by how much 
+Program to Analyze a Floating Point Number (≤ 999.999)
 */
 #include <stdio.h>
 
-// Clear input buffer to handle invalid inputs
+// Function to clear input buffer
 void clearInputBuffer() {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
@@ -18,7 +15,6 @@ int countDecimalPlaces(double num) {
     double fractional = num - (int)num;  // Get fractional part
     const double EPSILON = 1e-10;  // precise epsilon value
     
-    // Multiply by 10 and check if there's a significant digit
     while(count < 6 && fractional > EPSILON) {
         fractional *= 10;
         fractional -= (int)fractional;
@@ -64,19 +60,16 @@ int main() {
             printf("Error: Number must have at most 3 decimal places!\n");
             continue;
         }
-        
-        // Round to exactly 3 decimal places for consistency
-        num = (double)((int)(num * 1000 + 0.5)) / 1000.0;
-        
         valid_input = 1;
-        
-    } while(!valid_input);
+    } while (!valid_input);
+    
+    // Round to exactly 3 decimal places for consistency
+    num = (double)((int)(num * 1000 + 0.5)) / 1000.0;
     
     // Split number into integer and decimal parts
     int leftPart = (int)num;  // Integer part
-    int rightPart = (int)((num - leftPart) * 1000 + 0.5);  // Decimal part * 1000 with rounding
+    int rightPart = (int)((num - leftPart) * 1000 + 0.5);  // Decimal part * 1000
     
-    // Get leftmost and rightmost digits
     int leftmost = getLeftmostDigit(leftPart);
     int rightmost = getRightmostDigit(rightPart);
     
@@ -86,7 +79,6 @@ int main() {
     // Get last three digits of left part for fair comparison
     int leftThreeDigits = leftPart % 1000;
     
-    // Compare parts
     printf("\n\nLeft three digits: %d", leftThreeDigits);
     printf("\nRight three digits: %d", rightPart);
     
@@ -97,6 +89,7 @@ int main() {
     } else {
         printf("\nBoth sides are equal");
     }
+    printf("\n");
     
     return 0;
 } 

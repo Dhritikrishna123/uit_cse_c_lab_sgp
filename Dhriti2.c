@@ -15,40 +15,52 @@ int main(void) {
     double x, sum = 0.0;
     double coefficients[MAX_DEGREE + 1];
     char check;
+    int valid_input = 0;
 
-    // Taking input for the degree of the polynomial
-    printf("Enter the degree of the polynomial (0-%d): ", MAX_DEGREE);
-    if (scanf("%d%c", &n, &check) != 2 || check != '\n') {
-        printf("Error: Invalid input! Please enter a valid integer.\n");
-        return 1;
-    }
+    do {
+        printf("Enter the degree of the polynomial (0-%d): ", MAX_DEGREE);
+        if (scanf("%d%c", &n, &check) != 2 || check != '\n') {
+            printf("Error: Invalid input! Please enter a valid integer.\n");
+            clearInputBuffer();
+            continue;
+        }
 
-    if (n < 0) {
-        printf("Error: Degree cannot be negative.\n");
-        return 1;
-    }
+        if (n < 0) {
+            printf("Error: Degree cannot be negative.\n");
+            continue;
+        }
 
-    if (n > MAX_DEGREE) {
-        printf("Error: Degree cannot exceed %d.\n", MAX_DEGREE);
-        return 1;
-    }
+        if (n > MAX_DEGREE) {
+            printf("Error: Degree cannot exceed %d.\n", MAX_DEGREE);
+            continue;
+        }
+        valid_input = 1;
+    } while (!valid_input);
 
-    // Taking input for the coefficients
     printf("\nEnter the coefficients (from highest degree to constant term):\n");
     for (int i = 0; i <= n; i++) {
-        printf("Coefficient of x^%d: ", n - i);
-        if (scanf("%lf%c", &coefficients[i], &check) != 2 || check != '\n') {
-            printf("Error: Invalid input! Please enter a valid number.\n");
-            return 1;
-        }
+        valid_input = 0;
+        do {
+            printf("Coefficient of x^%d: ", n - i);
+            if (scanf("%lf%c", &coefficients[i], &check) != 2 || check != '\n') {
+                printf("Error: Invalid input! Please enter a valid number.\n");
+                clearInputBuffer();
+                continue;
+            }
+            valid_input = 1;
+        } while (!valid_input);
     }
 
-    // Taking input for x
-    printf("\nEnter the value of x: ");
-    if (scanf("%lf%c", &x, &check) != 2 || check != '\n') {
-        printf("Error: Invalid input! Please enter a valid number.\n");
-        return 1;
-    }
+    valid_input = 0;
+    do {
+        printf("\nEnter the value of x: ");
+        if (scanf("%lf%c", &x, &check) != 2 || check != '\n') {
+            printf("Error: Invalid input! Please enter a valid number.\n");
+            clearInputBuffer();
+            continue;
+        }
+        valid_input = 1;
+    } while (!valid_input);
 
     // Evaluating the polynomial sum
     for (int i = 0; i <= n; i++) {
