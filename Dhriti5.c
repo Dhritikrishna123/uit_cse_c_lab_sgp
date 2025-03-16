@@ -21,7 +21,7 @@ int main(void) {
     // Check for negative seconds
     if (seconds < 0) {
         printf("Error: Number of seconds cannot be negative.\n");
-        return 1;
+        return 1; 
     }
 
     // Store original input for display
