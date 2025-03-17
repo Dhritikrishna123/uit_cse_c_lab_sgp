@@ -10,29 +10,27 @@ void clearInputBuffer() {
 }
 
 int main() {
-    long long a, b;  // Using long long for range checking
+    int num1, num2;  // Changed to int directly
     char check;
     int valid_input = 0;
     
     do {
         printf("Enter two integers to perform bitwise operations: ");
-        if(scanf("%lld %lld%c", &a, &b, &check) != 3 || check != '\n') {
+        if(scanf("%d %d%c", &num1, &num2, &check) != 3 || check != '\n') {
             printf("Error: Invalid input! Please enter two valid integers.\n");
             clearInputBuffer();
             continue;
         }
         
         // Check for integer overflow
-        if(a > INT_MAX || a < INT_MIN || b > INT_MAX || b < INT_MIN) {
+        if(num1 > INT_MAX || num1 < INT_MIN || num2 > INT_MAX || num2 < INT_MIN) {
             printf("Error: Numbers out of range! Please enter numbers between %d and %d\n", 
                    INT_MIN, INT_MAX);
+            clearInputBuffer();
             continue;
         }
         valid_input = 1;
     } while (!valid_input);
-    
-    int num1 = (int)a;  // Safe to convert now
-    int num2 = (int)b;
     
     printf("\nBitwise Operations Results:\n");
     printf("----------------------------\n");
@@ -56,12 +54,8 @@ int main() {
     
     // Left Shift (<<)
     printf("\nLeft Shift (<<):\n");
-    if(num1 >= 0) {  // Only perform left shift on non-negative numbers
-        printf("%d << 1 = %d\n", num1, num1 << 1);
-        printf("%d << 2 = %d\n", num1, num1 << 2);
-    } else {
-        printf("Left shift not performed on negative number %d\n", num1);
-    }
+    printf("%d << 1 = %d\n", num1, num1 << 1);
+    printf("%d << 2 = %d\n", num1, num1 << 2);
     
     // Right Shift (>>)
     printf("\nRight Shift (>>):\n");
