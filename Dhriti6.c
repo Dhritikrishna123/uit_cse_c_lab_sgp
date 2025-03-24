@@ -1,13 +1,31 @@
 /*
-Program to Find Floor and Ceiling of a Decimal Number
+Program to Calculate Floor and Ceiling Values
 */
 #include <stdio.h>
-#include <limits.h>
+#include <float.h>
+#include <math.h>
 
 // Function to clear input buffer
 void clearInputBuffer() {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
+}
+
+// Implementation without math.h
+double customFloor(double num) {
+    int intPart = (int)num;
+    if (num < 0 && num != intPart) {
+        return intPart - 1;
+    }
+    return intPart;
+}
+
+double customCeil(double num) {
+    int intPart = (int)num;
+    if (num > 0 && num != intPart) {
+        return intPart + 1;
+    }
+    return intPart;
 }
 
 int main() {
@@ -23,27 +41,24 @@ int main() {
             continue;
         }
         
-        // Check for overflow
-        if(num > INT_MAX || num < INT_MIN) {
-            printf("Error: Number out of integer range! Please enter a number between %d and %d\n", 
-                   INT_MIN, INT_MAX);
+        // Check for overflow using float limits
+        if(num > FLT_MAX || num < -FLT_MAX) {
+            printf("Error: Number out of range! Please enter a number between %.2e and %.2e\n",
+                   -FLT_MAX, FLT_MAX);
             continue;
         }
         valid_input = 1;
     } while (!valid_input);
     
-    int smallest = (int)num;
-    if (num > 0 && num != (int)num) {
-        smallest += 1;
-    }
+    printf("\nUsing math.h functions:\n");
+    printf("Number: %.2f\n", num);
+    printf("Floor value: %.0f\n", floor(num));
+    printf("Ceiling value: %.0f\n", ceil(num));
     
-    int largest = (int)num;
-    if (num < 0 && num != (int)num) {
-        largest -= 1;
-    }
-    
-    printf("Smallest integer not less than %.2lf is: %d\n", num, smallest);
-    printf("Largest integer not greater than %.2lf is: %d\n", num, largest);
+    printf("\nUsing custom functions:\n");
+    printf("Number: %.2f\n", num);
+    printf("Floor value: %.0f\n", customFloor(num));
+    printf("Ceiling value: %.0f\n", customCeil(num));
     
     return 0;
 } 

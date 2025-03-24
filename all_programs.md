@@ -6,7 +6,7 @@
 3. [ASCII Values Display](#3-ascii-values-display)
 4. [Variable Swapping Methods](#4-variable-swapping-methods)
 5. [Time Unit Conversion](#5-time-unit-conversion)
-6. [Decimal Number Floor and Ceiling](#6-decimal-number-floor-and-ceiling)
+6. [Floor and Ceiling Calculator](#6-floor-and-ceiling-calculator)
 7. [Floating Point Number Analysis](#7-floating-point-number-analysis)
 8. [Five Digit Number Operations](#8-five-digit-number-operations)
 9. [Number Properties Checker](#9-number-properties-checker)
@@ -584,84 +584,139 @@ Error: Number of seconds cannot be negative.
 
 ---
 
-## 6. Decimal Number Floor and Ceiling
+## 6. Floor and Ceiling Calculator
 
-### Description
-Program to find the smallest integer not less than (ceiling) and the largest integer not greater than (floor) a given decimal number.
+### Problem Statement
+Write a C program to find the floor and ceiling values of a decimal number. The program should:
+- Accept a decimal number input
+- Calculate and display floor value
+- Calculate and display ceiling value
+- Handle invalid inputs
+- Format output with proper precision
+- Implement the solution both with and without using math.h
 
-### Code
+### Source Code
 ```c
 /*
-Program to Find Floor and Ceiling of a Decimal Number
+Program to Calculate Floor and Ceiling Values
 */
 #include <stdio.h>
-#include <limits.h>
+#include <float.h>
 
 void clearInputBuffer() {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
 }
 
-int main() {
+// Implementation without math.h
+double customFloor(double num) {
+    int intPart = (int)num;
+    if (num < 0 && num != intPart) {
+        return intPart - 1;
+    }
+    return intPart;
+}
+
+double customCeil(double num) {
+    int intPart = (int)num;
+    if (num > 0 && num != intPart) {
+        return intPart + 1;
+    }
+    return intPart;
+}
+
+int main(void) {
     double num;
     char check;
     int valid_input = 0;
-    
+
     do {
         printf("Enter a decimal number: ");
-        if(scanf("%lf%c", &num, &check) != 2 || check != '\n') {
+        if (scanf("%lf%c", &num, &check) != 2 || check != '\n') {
             printf("Error: Invalid input! Please enter a valid decimal number.\n");
             clearInputBuffer();
             continue;
         }
-        
-        if(num > INT_MAX || num < INT_MIN) {
-            printf("Error: Number out of integer range!\n");
+
+        if (num > FLT_MAX || num < -FLT_MAX) {
+            printf("Error: Number out of range! Please enter a number between %.2e and %.2e\n",
+                   -FLT_MAX, FLT_MAX);
             continue;
         }
         valid_input = 1;
     } while (!valid_input);
-    
-    int smallest = (int)num;
-    if (num > 0 && num != (int)num) {
-        smallest += 1;
-    }
-    
-    int largest = (int)num;
-    if (num < 0 && num != (int)num) {
-        largest -= 1;
-    }
-    
-    printf("Smallest integer not less than %.2lf is: %d\n", num, smallest);
-    printf("Largest integer not greater than %.2lf is: %d\n", num, largest);
-    
+
+    printf("\nUsing math.h functions:\n");
+    printf("Number: %.2f\n", num);
+    printf("Floor value: %.0f\n", floor(num));
+    printf("Ceiling value: %.0f\n", ceil(num));
+
+    printf("\nUsing custom functions:\n");
+    printf("Number: %.2f\n", num);
+    printf("Floor value: %.0f\n", customFloor(num));
+    printf("Ceiling value: %.0f\n", customCeil(num));
+
     return 0;
 }
 ```
 
-### Features
-- Input validation for decimal numbers
-- Overflow checking
-- Handles both positive and negative numbers
-- Proper rounding for floor and ceiling
-- Clear error messages
-
 ### Sample Outputs
 
-**Output 1 (Successful Case)**:
+**Output 1 (Successful Calculation)**:
 ```
 Enter a decimal number: 3.7
 
-Smallest integer not less than 3.70 is: 4
-Largest integer not greater than 3.70 is: 3
+Using math.h functions:
+Number: 3.70
+Floor value: 3
+Ceiling value: 4
+
+Using custom functions:
+Number: 3.70
+Floor value: 3
+Ceiling value: 4
 ```
 
-**Output 2 (Error Case)**:
+**Output 2 (Negative Number)**:
 ```
-Enter a decimal number: 2147483648.5
+Enter a decimal number: -3.7
 
-Error: Number out of integer range! Please enter a number between -2147483648 and 2147483647
+Using math.h functions:
+Number: -3.70
+Floor value: -4
+Ceiling value: -3
+
+Using custom functions:
+Number: -3.70
+Floor value: -4
+Ceiling value: -3
 ```
+
+**Output 3 (Error Handling)**:
+```
+Enter a decimal number: 3.4e38
+Error: Number out of range! Please enter a number between -3.40e+38 and 3.40e+38
+```
+
+### Implementation Details
+
+1. **Using math.h**:
+   - Uses built-in `floor()` and `ceil()` functions
+   - More precise for edge cases
+   - Handles all floating-point numbers
+
+2. **Custom Implementation**:
+   - Uses type casting and arithmetic operations
+   - Handles positive and negative numbers separately
+   - Simpler but may have precision issues with very large numbers
+
+### Key Features
+- Input validation for decimal numbers
+- Range checking using FLT_MAX
+- Handles both positive and negative numbers
+- Two different implementation approaches
+- Clear error messages
+- Formatted output display
 
 ---
 
