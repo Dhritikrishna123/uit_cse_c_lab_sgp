@@ -35,17 +35,17 @@ void calculateSums(int arr[], int size, long long *evenSum, long long *oddSum) {
     }
 }
 
-// Function to display array elements with their properties
-void displayArray(int arr[], int size) {
-    printf("\nArray elements and their properties:\n");
-    printf("Index\tValue\tType\n");
-    printf("------------------------\n");
+// // Function to display array elements with their properties
+// void displayArray(int arr[], int size) {
+//     printf("\nArray elements and their properties:\n");
+//     printf("Index\tValue\tType\n");
+//     printf("------------------------\n");
     
-    for(int i = 0; i < size; i++) {
-        printf("%d\t%d\t%s\n", i, arr[i], 
-               (arr[i] % 2 == 0) ? "Even" : "Odd");
-    }
-}
+//     for(int i = 0; i < size; i++) {
+//         printf("%d\t%d\t%s\n", i, arr[i], 
+//                (arr[i] % 2 == 0) ? "Even" : "Odd");
+//     }
+// }
 
 int main() {
     int arr[MAX_SIZE];
@@ -82,8 +82,8 @@ int main() {
         }
     }
     
-    // Display the array
-    displayArray(arr, size);
+    // // Display the array
+    // displayArray(arr, size);
     
     // Calculate sums
     long long evenSum, oddSum;
@@ -94,15 +94,15 @@ int main() {
     printf("Sum of even numbers: %lld\n", evenSum);
     printf("Sum of odd numbers: %lld\n", oddSum);
     
-    // Display the difference
-    printf("\nDifference between sums:\n");
-    if(evenSum > oddSum) {
-        printf("Even sum is greater by: %lld\n", evenSum - oddSum);
-    } else if(oddSum > evenSum) {
-        printf("Odd sum is greater by: %lld\n", oddSum - evenSum);
-    } else {
-        printf("Even and odd sums are equal\n");
-    }
+    // // Display the difference
+    // printf("\nDifference between sums:\n");
+    // if(evenSum > oddSum) {
+    //     printf("Even sum is greater by: %lld\n", evenSum - oddSum);
+    // } else if(oddSum > evenSum) {
+    //     printf("Odd sum is greater by: %lld\n", oddSum - evenSum);
+    // } else {
+    //     printf("Even and odd sums are equal\n");
+    // }
     
     return 0;
 } 

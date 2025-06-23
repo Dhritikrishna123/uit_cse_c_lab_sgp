@@ -90,15 +90,15 @@ int main() {
     if(sum > 0) {  // Check if calculation was successful
         printf("\nSum of the series = %llu\n", sum);
         
-        // Display term-by-term calculation for verification
-        printf("\nTerm-by-term calculation:\n");
-        unsigned long long termSum = 0;
-        for(int i = 1; i <= n; i++) {
-            unsigned long long currentTerm = sumOfNaturalNumbers(i);
-            printf("Term %d = %llu\n", i, currentTerm);
-            termSum += currentTerm;
-        }
-        printf("Total Sum = %llu\n", termSum);
+        // // Display term-by-term calculation for verification
+        // printf("\nTerm-by-term calculation:\n");
+        // unsigned long long termSum = 0;
+        // for(int i = 1; i <= n; i++) {
+        //     unsigned long long currentTerm = sumOfNaturalNumbers(i);
+        //     printf("Term %d = %llu\n", i, currentTerm);
+        //     termSum += currentTerm;
+        // }
+        // printf("Total Sum = %llu\n", termSum);
     }
     
     return 0;

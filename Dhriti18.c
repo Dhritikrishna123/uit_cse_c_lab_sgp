@@ -35,16 +35,16 @@ void findMax(int arr[], int size, int *maxValue, int *maxIndex) {
     }
 }
 
-// Function to display array elements with indices
-void displayArray(int arr[], int size) {
-    printf("\nArray elements:\n");
-    printf("Index\tValue\n");
-    printf("----------------\n");
+// // Function to display array elements with indices
+// void displayArray(int arr[], int size) {
+//     printf("\nArray elements:\n");
+//     printf("Index\tValue\n");
+//     printf("----------------\n");
     
-    for(int i = 0; i < size; i++) {
-        printf("%d\t%d\n", i, arr[i]);
-    }
-}
+//     for(int i = 0; i < size; i++) {
+//         printf("%d\t%d\n", i, arr[i]);
+//     }
+// }
 
 int main() {
     int arr[MAX_SIZE];
@@ -82,8 +82,8 @@ int main() {
         }
     }
     
-    // Display the array
-    displayArray(arr, size);
+    // // Display the array
+    // displayArray(arr, size);
     
     // Find minimum and maximum
     findMin(arr, size, &minValue, &minIndex);
@@ -94,18 +94,18 @@ int main() {
     printf("Smallest value: %d (at index %d)\n", minValue, minIndex);
     printf("Largest value: %d (at index %d)\n", maxValue, maxIndex);
     
-    // Display additional information
-    printf("\nArray Analysis:\n");
-    printf("Range (max - min): %d\n", maxValue - minValue);
+    // // Display additional information
+    // printf("\nArray Analysis:\n");
+    // printf("Range (max - min): %d\n", maxValue - minValue);
     
-    int distance = maxIndex - minIndex;
-    if(distance < 0) distance = -distance;  // Simple way to get absolute value
-    printf("Distance between min and max indices: %d\n", distance);
+    // int distance = maxIndex - minIndex;
+    // if(distance < 0) distance = -distance;  // Simple way to get absolute value
+    // printf("Distance between min and max indices: %d\n", distance);
     
-    // Check if min and max are adjacent
-    if(distance == 1) {
-        printf("Minimum and maximum values are adjacent in the array.\n");
-    }
+    // // Check if min and max are adjacent
+    // if(distance == 1) {
+    //     printf("Minimum and maximum values are adjacent in the array.\n");
+    // }
     
     return 0;
 } 

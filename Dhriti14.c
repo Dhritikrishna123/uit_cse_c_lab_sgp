@@ -88,18 +88,18 @@ int main() {
     printf("Using math.h: %.6f\n", mathResult);
     printf("Difference: %.6f\n", fabs(seriesResult - mathResult));
     
-    // Display series expansion
-    printf("\nSeries Expansion:\n");
-    printf("sin(x) = ");
-    for(int n = 0; n < terms; n++) {
-        int exponent = 2 * n + 1;
-        if(n == 0) {
-            printf("x");
-        } else {
-            printf("%s(x^%d/%d!)", (n % 2 == 0) ? "+ " : "- ", exponent, exponent);
-        }
-    }
-    printf("\n");
+    // // Display series expansion
+    // printf("\nSeries Expansion:\n");
+    // printf("sin(x) = ");
+    // for(int n = 0; n < terms; n++) {
+    //     int exponent = 2 * n + 1;
+    //     if(n == 0) {
+    //         printf("x");
+    //     } else {
+    //         printf("%s(x^%d/%d!)", (n % 2 == 0) ? "+ " : "- ", exponent, exponent);
+    //     }
+    // }
+    // printf("\n");
     
     return 0;
 } 
